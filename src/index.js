@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Router, Route } from "react-router-dom";
-import { App, Login, Register } from "./App";
+import { BrowserRouter, Route } from "react-router-dom";
+import { App } from "./App";
 
 
-function home() {
-    return <h1>Home Page</h1>;
-}
 const ParamsExample = () => (
     <BrowserRouter>
         <Route path="/" component={App} />
