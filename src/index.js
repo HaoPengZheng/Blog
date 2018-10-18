@@ -1,22 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { App, InsterPage, Login ,Register} from "./App";
-const show = () =>{
-    return(
-        <div>
-            <InsterPage></InsterPage>
-        </div>
-    )
-}
+import { BrowserRouter, Router, Route } from "react-router-dom";
+import { App, Login, Register } from "./App";
 
-const ParamsExample = () => ( 
-    <Router>
-        <Route path="/:id" component={App}>
-            <Route path="login" component={show} />
-            <Route path="register" component={Register} />
-        </Route>
-    </Router>
+
+function home() {
+    return <h1>Home Page</h1>;
+}
+const ParamsExample = () => (
+    <BrowserRouter>
+        <Route path="/" component={App} />
+    </BrowserRouter>
 );
 ReactDOM.render(ParamsExample(), document.getElementById('root'));
 
