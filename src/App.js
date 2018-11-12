@@ -6,14 +6,14 @@ import { BrowserRouter, Route } from "react-router-dom";
 export class App extends Component {
   render() {
     return (
-        <div className="">
+      <div >
         <BrowserRouter>
           <div>
             <Route exact path="/" component={HomePage} />
+            <Route  path="/user" component={InsterPage} />
           </div>
         </BrowserRouter>
-          <InsterPage></InsterPage>
-        </div>
+      </div>
     );
   }
 }

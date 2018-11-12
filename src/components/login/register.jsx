@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import Logo from '../common/logo'
-import axios from 'axios';
 import Http from '../../http/registerRequest.js';
 export default class Register extends React.Component {
   state = {
@@ -148,7 +147,7 @@ export default class Register extends React.Component {
     }
     captcha = this.state.captcha;
     return (
-      <div className="register" align="center">
+      <div className="register">
         <Logo></Logo>
         <FormControl fullWidth>
           <InputLabel htmlFor="adornment-password">手机号</InputLabel>

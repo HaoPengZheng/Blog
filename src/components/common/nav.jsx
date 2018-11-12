@@ -123,7 +123,7 @@ class PrimarySearchAppBar extends React.Component {
         let liName = ['首页', '写', '读','抄'];
         let list = [];
         for (let i = 0; i < liName.length; i++) {
-            if (i == this.state.menuActiveIndex) {
+            if (i === this.state.menuActiveIndex) {
                 list.push(<li className="active" key={i} onClick={()=>{this.setState({menuActiveIndex:i})}}>{liName[i]}</li>)
             } else {
                 list.push(<li key={i} onClick={()=>{this.setState({menuActiveIndex:i})}}>{liName[i]}</li>)

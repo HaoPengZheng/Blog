@@ -64,7 +64,7 @@ export default class Login extends React.Component {
       errorNameAlert = <FormHelperText id="weight-helper-text" error style={{ margin: "8px 0" }}>{this.state.alertName}</FormHelperText>
     }
     return (
-      <div className="login" align="center">
+      <div className="login">
       <div className="login-top">
         <Logo></Logo>
         <FormControl fullWidth>
@@ -107,7 +107,7 @@ export default class Login extends React.Component {
         <StyledButton>登录</StyledButton>
         </div>
         <div className="login-bottom">
-          <p><span>没有账号？</span><NavLink to="/register">注册</NavLink></p>
+          <p><span>没有账号？</span><NavLink to="/user/register">注册</NavLink></p>
         </div>
       </div>);
   }

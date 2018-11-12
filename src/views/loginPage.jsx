@@ -36,21 +36,20 @@ export default class InsterPage extends React.Component {
     this.setState({ index: newIndex})
   }
 
-  next(s){
-    return(
-      <div className="pic-button" onClick={this.nextPic}>
-      <svg class="pic-icon" aria-hidden="true">
-        <use xlinkHref={s}></use>
-      </svg>
-    </div>
-    )
-  }
 
-  before(s){
+  changeImg(direction){
+    const iconHerf={
+      left:"#icon-tubiaozhizuo-1",
+      right:"#icon-tubiaozhizuo-2",
+    }
+    const option={
+      left:()=>this.beforePic(),
+      right:()=>this.nextPic()
+    }
     return(
-      <div className="pic-button" onClick={this.beforePic}>
-      <svg class="pic-icon" aria-hidden="true">
-        <use xlinkHref={s}></use>
+      <div className="pic-button" onClick={option[direction]}>
+      <svg className="pic-icon" aria-hidden="true">
+        <use xlinkHref={iconHerf[direction]}></use>
       </svg>
     </div>
     )
@@ -58,17 +57,17 @@ export default class InsterPage extends React.Component {
 
   render() {
     return (
-      <div className="main" align="center" style={{ 'background-image': `url(${this.state.url[this.state.index]})` }}>
+      <div className="main" style={{ 'backgroundImage': `url(${this.state.url[this.state.index]})` }}>
         <BrowserRouter>
           <div>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+            <Route path="/user/login" component={Login} />
+            <Route path="/user/register" component={Register} />
           </div>
         </BrowserRouter>
 
         <div className="bottom-box">
-          {this.before("#icon-tubiaozhizuo-1")}
-          {this.next("#icon-tubiaozhizuo-2")}
+          {this.changeImg("left")}
+          {this.changeImg("right")}
         </div>
       </div>
     );
