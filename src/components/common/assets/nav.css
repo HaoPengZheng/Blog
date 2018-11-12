@@ -1,0 +1,17 @@
+.nav-ul{
+    margin: 0;
+}
+.nav-ul li{
+    float: left;
+    width: 80px;
+    line-height:64px;
+    list-style: none;
+    text-align: center;
+}
+.nav-ul li:hover{
+    background: #4a5cc2;
+    cursor: pointer;
+}
+.nav-ul li.active{
+    color:rgb(246, 248, 150);
+}

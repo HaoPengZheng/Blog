@@ -1,8 +1,18 @@
 .login{
     background: #ffffff;
-    padding: 20px 30px;
     border-radius: 2px;
     width: 320px;
+}
+.login-top{
+    background: #ffffff;
+    padding: 20px 30px;
+    width: 320px;
+}
+.login-bottom{
+    background: #f7f7f7;
+    padding: 10px 30px;
+    border: #ececec 1px solid;
+    width: 318px;
 }
 .register{
     background: #ffffff;
@@ -20,13 +30,11 @@
     height:100%;
     width:100%;
     position:fixed;
-    background: #e9e9e9;
+    background: #d1d1d1;
     display:flex;
     align-items:center;/*垂直居中*/
     justify-content:center;
-}
-.inster-page{
-    width: 500px;
+    user-select: none;
 }
 html,body{
     margin: 0;

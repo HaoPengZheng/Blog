@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.eassy-whole{
+    width: 750px;
+    height: 160px;
+    background: #ffffff;
+    border-bottom: #bbbbbb 1px solid;
+    display: flex;
+    justify-content: space-between;
+}
+.eassy-right{
+    width: 160px;
+}
+.eassy-left{
+    padding: 10px 10px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.eassy-title{
+    max-height: 55px;
+    font-size: 19px;
+    font-weight: 400;
+    overflow: hidden;
+}
+.eassy-body{
+    margin: 8px 0;
+    max-height: 60px;
+    font-size: 15px;
+    color: #cecece;
+    overflow: hidden;
+}
+.eassy-property{
+    font-size: 14px;
+    color: #868686;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.property-left{
+    display: flex;
+    justify-content: flex-start;
+}
+.property-right{
+    display: flex;
+    justify-content: flex-start;
+}
+.property-item{
+    margin-left: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+.icon{
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    overflow: hidden;
+    color: gray;
+    fill: currentColor;
+}
+ul{
+    list-style: none;
+}

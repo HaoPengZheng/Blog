@@ -7,9 +7,12 @@ import Button from '@material-ui/core/Button';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 import Logo from '../common/logo'
-import picture from './picture.jpg'
+import axios from 'axios';
+import Http from '../../http/registerRequest.js';
 export default class Register extends React.Component {
   state = {
+    url: 'http://120.79.177.224:3000/api/user',
+    verificateUrl: 'http://120.79.177.224:3000/api/captcha',
     defaultTime: 10,
     time: 0,
     name: '',//手机号
@@ -17,7 +20,10 @@ export default class Register extends React.Component {
     surePassWord: '',//确定密码
     weight: '',
     weightRange: '',
-    verification: '',//验证码
+    verification: '',//用户输入的验证码
+    captchaText: '', //正确的验证码
+    captcha: '', //验证码SVG
+    phoneVerification: '',//手机验证码
     touchText: '获取验证码',
     alertName: '请输入正确手机号',
     alertpwd: '密码设置不规范',
@@ -77,11 +83,55 @@ export default class Register extends React.Component {
     this.interval = setInterval(() => this.tick(), 1000)
   }
 
+  handleRegister = () => {
+    if (this.state.name === '' || this.state.isNameError === true) {
+      alert("请检查手机号输入是否正确");
+    } else if (this.state.password === '' || this.state.isPwdError === true) {
+      alert("请检查密码输入是否符合规则");
+    } else if (this.state.isPwdSame === true) {
+      alert("两次密码输入不一致！");
+    } else if (this.state.verification.toLowerCase !== this.state.captchaText.toLowerCase) {
+      alert("验证码错误" + this.state.verification.toLowerCase + " : " + this.state.captchaText.toLowerCase);
+    } else {
+      // axios.post(this.state.url, {
+      //   username: this.state.name,
+      //   password: this.state.password
+      // })
+      //   .then(function (response) {
+      //     console.log(response);
+      //   })
+      //   .catch(function (error) {
+      //     console.log(error);
+      //     if (error.response.data.code === 400) {
+      //       alert(error.response.data.msg)
+      //     }
+      //   });
+      Http.onRegister(this.state.url,{username:this.state.name , password:this.state.password}).then(response =>{
+        //注册成功逻辑
+        if(response.data.code === 200){
+          alert(response.data.msg);
+        }
+      })
+    }
+  }
+
+  getCaptcha = () => {
+    Http.getCaptcha(this.state.verificateUrl).then(response => {
+     this.setState({captchaText: response.data.text})
+     this.setState({captcha : response.data.data})
+    })
+  }
+
+  componentDidMount() {
+    this.getCaptcha();
+  }
+
   render() {
     let errorNameAlert = "";
     let errorPassWordAlert = "";
     let errorPwdSameAlert = "";
     let getVerificate = "";
+    let captcha = "";
     if (this.state.isNameError) {//手机号不规范提示
       errorNameAlert = <FormHelperText id="weight-helper-text" error style={{ margin: "8px 0" }}>{this.state.alertName}</FormHelperText>
     }
@@ -96,6 +146,7 @@ export default class Register extends React.Component {
     } else {
       getVerificate = <Button variant="outlined" color="primary" size="small" style={{ width: "115px", marginTop: "18px" }} disabled="disable">{this.state.touchText}</Button>
     }
+    captcha = this.state.captcha;
     return (
       <div className="register" align="center">
         <Logo></Logo>
@@ -113,6 +164,7 @@ export default class Register extends React.Component {
         <TextField
           id="standard-password-input"
           label="设置密码"
+          placeholder="至少包含两种字符类型，长度不小于6"
           type="password"
           autoComplete="current-password"
           margin="normal"
@@ -143,20 +195,22 @@ export default class Register extends React.Component {
             onChange={this.handleChange('verification')}
             fullWidth
           />
-          <img src={picture} style={{ width: "90px", marginTop: "16px" }}></img>
+          <div style={{ width: '150px' }}>
+            <div dangerouslySetInnerHTML={{ __html: `${captcha}` }} onClick={this.getCaptcha} style={{ cursor: "pointer" }} />
+          </div>
         </div>
         <div className="verificate">
           <TextField
             id="standard-password-input"
             label="短信验证码"
             margin="normal"
-            value={this.state.verification}
-            onChange={this.handleChange('verification')}
+            value={this.state.phoneVerification}
+            onChange={this.handleChange('phoneVerification')}
             fullWidth
           />
           {getVerificate}
         </div>
-        <Button variant="contained" color="primary" size="large" fullWidth style={{ marginTop: "20px" }}>注册</Button>
+        <Button variant="contained" color="primary" size="large" fullWidth style={{ marginTop: "20px" }} onClick={this.handleRegister}>注册</Button>
       </div>
     )
   }

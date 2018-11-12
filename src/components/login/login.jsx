@@ -65,6 +65,7 @@ export default class Login extends React.Component {
     }
     return (
       <div className="login" align="center">
+      <div className="login-top">
         <Logo></Logo>
         <FormControl fullWidth>
           <InputLabel htmlFor="adornment-password">手机号/邮箱</InputLabel>
@@ -102,9 +103,11 @@ export default class Login extends React.Component {
             }
           />
         </FormControl>
+        <span style={{ color: "#0084ff", cursor: "pointer",float:'right',fontSize:'14px'}}>忘记密码？</span>
         <StyledButton>登录</StyledButton>
-        <div>
-          <p><span>没有账号？</span><NavLink to="/register">注册</NavLink><span style={{ color: "#0084ff", cursor: "pointer" }}>忘记密码？</span></p>
+        </div>
+        <div className="login-bottom">
+          <p><span>没有账号？</span><NavLink to="/register">注册</NavLink></p>
         </div>
       </div>);
   }
