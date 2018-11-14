@@ -27,5 +27,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  }
 }

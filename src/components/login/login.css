@@ -1,8 +1,8 @@
 .login{
     border-radius: 2px;
+    background-color: rgba(255,255,255,.6);
 }
 .login-top{
-    background: #ffffff;
     padding: 20px 30px;
     width: 320px;
 }

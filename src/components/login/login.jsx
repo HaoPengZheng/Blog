@@ -65,46 +65,46 @@ export default class Login extends React.Component {
     }
     return (
       <div className="login">
-      <div className="login-top">
-        <Logo></Logo>
-        <FormControl fullWidth>
-          <InputLabel htmlFor="adornment-password">手机号/邮箱</InputLabel>
-          <Input
-            error={this.state.isNameError}
-            id="adornment-id"
-            value={this.state.name}
-            onChange={this.handleChange('name')}
-            onBlur={this.handleValidateName}
-            endAdornment={
-              <InputAdornment position="end">
-                <AccountCircle style={{ marginRight: "12px" }} />
-              </InputAdornment>
-            }
-          />
-          {errorNameAlert}
-        </FormControl>
-        <FormControl fullWidth>
-          <InputLabel htmlFor="adornment-password">密码</InputLabel>
-          <Input
-            style={{ marginBottom: "20px" }}
-            id="adornment-password"
-            type={this.state.showPassword ? 'text' : 'password'}
-            value={this.state.password}
-            onChange={this.handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-        <span style={{ color: "#0084ff", cursor: "pointer",float:'right',fontSize:'14px'}}>忘记密码？</span>
-        <StyledButton>登录</StyledButton>
+        <div className="login-top">
+          <Logo></Logo>
+          <FormControl fullWidth>
+            <InputLabel htmlFor="adornment-password">手机号/邮箱</InputLabel>
+            <Input
+              error={this.state.isNameError}
+              id="adornment-id"
+              value={this.state.name}
+              onChange={this.handleChange('name')}
+              onBlur={this.handleValidateName}
+              endAdornment={
+                <InputAdornment position="end">
+                  <AccountCircle style={{ marginRight: "12px" }} />
+                </InputAdornment>
+              }
+            />
+            {errorNameAlert}
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel htmlFor="adornment-password">密码</InputLabel>
+            <Input
+              style={{ marginBottom: "20px" }}
+              id="adornment-password"
+              type={this.state.showPassword ? 'text' : 'password'}
+              value={this.state.password}
+              onChange={this.handleChange('password')}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    onClick={this.handleClickShowPassword}
+                  >
+                    {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <span style={{ color: "#0084ff", cursor: "pointer", float: 'right', fontSize: '14px' }}>忘记密码？</span>
+          <StyledButton>登录</StyledButton>
         </div>
         <div className="login-bottom">
           <p><span>没有账号？</span><NavLink to="/user/register">注册</NavLink></p>
