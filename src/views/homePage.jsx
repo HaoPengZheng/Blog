@@ -1,6 +1,6 @@
 import React from 'react'
 import Nav from '../components/common/nav'
-import './homepage.css'
+import './assets/css/homepage.css'
 import Item from '../components/common/eassy'
 export default class HomePage extends React.Component {
   render() {

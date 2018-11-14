@@ -1,17 +1,4 @@
-.login{
-    border-radius: 2px;
-    background-color: rgba(255,255,255,.6);
-}
-.login-top{
-    padding: 20px 30px;
-    width: 320px;
-}
-.login-bottom{
-    background: #f7f7f7;
-    padding: 10px 30px;
-    border: #ececec 1px solid;
-    width: 318px;
-}
+
 .register{
     background: #ffffff;
     padding: 20px 30px;

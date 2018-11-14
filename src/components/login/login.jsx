@@ -1,5 +1,6 @@
 import React from 'react';
 import "./login.css"
+import "./login.scss"
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,6 +14,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import { withStyles } from '@material-ui/core/styles';
 import Logo from '../common/logo'
 import { NavLink } from "react-router-dom";
+import http from '../../http/registerRequest'
 export default class Login extends React.Component {
   state = {
     name: '',
@@ -41,6 +43,14 @@ export default class Login extends React.Component {
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
+  
+  handleLogin = ()=>{
+    http.login({username:this.state.name , password:this.state.password}).then((res)=>{
+      console.log(res.data)
+    }).catch(err=>{
+      console.log(err.response.data);
+    })
+  }
 
   render() {
     const StyledButton = withStyles({
@@ -104,10 +114,10 @@ export default class Login extends React.Component {
             />
           </FormControl>
           <span style={{ color: "#0084ff", cursor: "pointer", float: 'right', fontSize: '14px' }}>忘记密码？</span>
-          <StyledButton>登录</StyledButton>
+          <StyledButton onClick={this.handleLogin}>登录</StyledButton>
         </div>
         <div className="login-bottom">
-          <p><span>没有账号？</span><NavLink to="/user/register">注册</NavLink></p>
+          <NavLink to="/user/register">没有账号？注册</NavLink>
         </div>
       </div>);
   }

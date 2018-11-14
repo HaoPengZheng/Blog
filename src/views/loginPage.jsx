@@ -1,8 +1,10 @@
 import React from 'react';
+import './assets/css/loginPage.scss'
 import { BrowserRouter, Route } from "react-router-dom";
 import Login from '../components/login/login'
 import Register from '../components/login/register'
 import Http from '../http/loginPage.js';
+import Tooltip from '@material-ui/core/Tooltip';
 export default class InsterPage extends React.Component {
   state = {
     index: 0,
@@ -22,36 +24,42 @@ export default class InsterPage extends React.Component {
 
   nextPic = () => {
     var currentIndex = this.state.index;
-    this.setState({ index: (currentIndex + 1) % 8})
+    this.setState({ index: (currentIndex + 1) % 8 })
   }
 
-  beforePic = () =>{
+  beforePic = () => {
     var currentIndex = this.state.index;
     var newIndex = 0
-    if(currentIndex === 0){
+    if (currentIndex === 0) {
       newIndex = 7;
-    }else{
-      newIndex = currentIndex -1  ;
+    } else {
+      newIndex = currentIndex - 1;
     }
-    this.setState({ index: newIndex})
+    this.setState({ index: newIndex })
   }
 
 
-  changeImg(direction){
-    const iconHerf={
-      left:"#icon-tubiaozhizuo-1",
-      right:"#icon-tubiaozhizuo-2",
+  changeImg(direction) {
+    const iconHerf = {
+      left: "#icon-tubiaozhizuo-1",
+      right: "#icon-tubiaozhizuo-2",
     }
-    const option={
-      left:()=>this.beforePic(),
-      right:()=>this.nextPic()
+    const label = {
+      left:"上一张",
+      right:"下一张"
     }
-    return(
-      <div className="pic-button" onClick={option[direction]}>
-      <svg className="pic-icon" aria-hidden="true">
-        <use xlinkHref={iconHerf[direction]}></use>
-      </svg>
-    </div>
+    const option = {
+      left: () => this.beforePic(),
+      right: () => this.nextPic()
+    }
+    return (
+      <Tooltip title={label[direction]}>
+        <div className="pic-button" onClick={option[direction]}>
+          <svg className="pic-icon" aria-hidden="true">
+            <use xlinkHref={iconHerf[direction]}></use>
+          </svg>
+        </div>
+      </Tooltip>
     )
   }
 
