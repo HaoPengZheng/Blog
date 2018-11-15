@@ -1,6 +1,7 @@
 import React from 'react';
 import "./login.css"
 import "./login.scss"
+import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +12,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 import Logo from '../common/logo'
 import { NavLink } from "react-router-dom";
@@ -25,10 +27,12 @@ export default class Login extends React.Component {
     showPassword: false,
     alertName: '请输入正确手机号',
     isNameError: false,
+    open: false,
+    vertical: 'top',
+    horizontal: 'right',
   };
   handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
-
   };
 
   handleValidateName = () => {
@@ -43,13 +47,19 @@ export default class Login extends React.Component {
   handleClickShowPassword = () => {
     this.setState(state => ({ showPassword: !state.showPassword }));
   };
-  
-  handleLogin = ()=>{
-    http.login({username:this.state.name , password:this.state.password}).then((res)=>{
+
+  handleLogin = () => {
+    this.setState({ open: true });
+    http.login({ username: this.state.name, password: this.state.password }).then((res) => {
       console.log(res.data)
-    }).catch(err=>{
+
+    }).catch(err => {
       console.log(err.response.data);
     })
+  }
+
+  handleClose = () =>{
+    this.setState({open:false})
   }
 
   render() {
@@ -75,6 +85,25 @@ export default class Login extends React.Component {
     }
     return (
       <div className="login">
+        <Snackbar
+          anchorOrigin={{ vertical: this.state.vertical, horizontal: this.state.horizontal }}
+          open={this.state.open}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">账号或密码错误！</span>}
+          action={
+            [<IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,]
+          }
+        />
         <div className="login-top">
           <Logo></Logo>
           <FormControl fullWidth>
@@ -119,6 +148,7 @@ export default class Login extends React.Component {
         <div className="login-bottom">
           <NavLink to="/user/register">没有账号？注册</NavLink>
         </div>
+
       </div>);
   }
 }
